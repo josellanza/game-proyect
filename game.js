@@ -12,9 +12,13 @@ function Game (ctx, canvas, cb) {
     this.callback = cb;
     this.firstsquare = null;
     this.secondsquare = null;
-    this.thirthsquare = null;
+    this.thirdsquare = null;
     this.fourthsquare = null;
     this.fifthsquare = null;
+    this.sixthsquare = null;
+    this.seventhsquare1 = null;
+    this.seventhsquare2 = null;
+    this.seventhsquare3 = null;
     this.start();
 
 }
@@ -23,9 +27,13 @@ function Game (ctx, canvas, cb) {
         self.player = new Player (self.ctx);
         self.firstsquare = new Firstsquare (self.ctx, self.size);
         self.secondsquare = new Secondsquare (self.ctx, self.size);
-        self.thirthsquare = new Thirthsquare (self.ctx, self.size);
+        self.thirdsquare = new Thirdsquare (self.ctx, self.size);
         self.fourthsquare = new Fourthsquare (self.ctx, self.size);
         self.fifthsquare = new Fifthsquare (self.ctx, self.size);
+        self.sixthsquare = new Sixthsquare (self.ctx, self.size);
+        self.seventhsquare1 = new Seventhsquare (self.ctx, self.size, 1115);
+        self.seventhsquare2 = new Seventhsquare (self.ctx, self.size, 1165);
+        self.seventhsquare3 = new Seventhsquare (self.ctx, self.size, 1210);
         self.doFrame();
     }
 
@@ -48,16 +56,21 @@ function Game (ctx, canvas, cb) {
         self.player.draw();
         self.firstsquare.draw();
         self.secondsquare.draw();
-        self.thirthsquare.draw();
+        self.thirdsquare.draw();
         self.fourthsquare.draw();
         self.fifthsquare.draw();
+        self.sixthsquare.draw();
+        self.seventhsquare1.draw();
+        self.seventhsquare2.draw();
+        self.seventhsquare3.draw();
+
     }
 
 
     Game.prototype.update = function () {
         var self = this;
         self.firstsquare.move();
-        // console.log(self.player.position.y);
+        console.log(self.player.position.y, self.player.position.x);
     }
 
 
@@ -67,45 +80,39 @@ function Game (ctx, canvas, cb) {
                 self.firstsquare.moveStop();
                 
             }, 7000);
-
-        // var gameTest = setTimeout(() => {
-        //     self.thirthsquare.moveUp();
-            
-        // }, 6500);
-
-        // var gameTest = setTimeout(() => {
-        //     self.thirthsquare.moveDown();
-            
-        // }, 8000);
-
-        // var gameTest = setTimeout(() => {
-        //     self.thirthsquare.moveStop();
-            
-        // }, 9500);
-
-        // var gameTest = setTimeout(() => {
-        //     self.fourthsquare.move();
-            
-        // }, 15000);
-
-        // var gameTest = setTimeout(() => {
-        //     self.fifthsquare.move();
-            
-        // }, 15000);
     }
 
-    Game.prototype.startMovements = function () {
+    Game.prototype.startFirstMovement = function () {
         var self = this;
-        if (self.player.position.y <= 70 && self.player.position.x <= 550) {
-            self.thirthsquare.moveUp();
+        if (self.player.position.y <= 90 && self.player.position.x >= 570) {
+            self.thirdsquare.moveUp();
+
+        } else if (self.player.position.y >= 480 && self.player.position.x >= 665) {
+            
+            self.fifthsquare.moveRight();
+            self.fourthsquare.moveDown();
 
         }
+         if (self.player.position.y >= 600 && self.player.position.x >= 800) {
+           
+            self.seventhsquare1.moveDown();
+            self.seventhsquare2.moveDown();
+            self.seventhsquare3.moveDown();
+            
+        }      
     }
+
+
+    // Game.prototype.startSecondMovement = function () {
+    //     var self = this,
+        
+    // }
+
 
     Game.prototype.checkCollisions = function () {
         var self = this;
 
-        // Collision with the firstsquare
+        // Collision with the firstsquarew
 
         var firstsquareData = {
             x: self.firstsquare.position.x,
@@ -157,11 +164,11 @@ function Game (ctx, canvas, cb) {
 
             // Collision with the thirthsquare
 
-        var thirthsquareData = {
-            x: self.thirthsquare.position.x,
-            y: self.thirthsquare.position.y,
-            width: self.thirthsquare.size.width,
-            height: self.thirthsquare.size.height,
+        var thirdsquareData = {
+            x: self.thirdsquare.position.x,
+            y: self.thirdsquare.position.y,
+            width: self.thirdsquare.size.width,
+            height: self.thirdsquare.size.height,
             
             };
             
@@ -172,10 +179,10 @@ function Game (ctx, canvas, cb) {
             height: self.player.size.height,
             }
             
-            if (thirthsquareData.x < playerData.x + playerData.width &&
-            thirthsquareData.x + thirthsquareData.width > playerData.x &&
-            thirthsquareData.y < playerData.y + playerData.height &&
-            thirthsquareData.height + thirthsquareData.y > playerData.y) {
+            if (thirdsquareData.x < playerData.x + playerData.width &&
+            thirdsquareData.x + thirdsquareData.width > playerData.x &&
+            thirdsquareData.y < playerData.y + playerData.height &&
+            thirdsquareData.height + thirdsquareData.y > playerData.y) {
                 self.player = new Player(self.ctx);
             }
     
@@ -227,6 +234,153 @@ function Game (ctx, canvas, cb) {
                 self.player = new Player(self.ctx);
             }
 
+            // Collision with the sixthsquare
+
+        var sixthsquareData = {
+            x: self.sixthsquare.position.x,
+            y: self.sixthsquare.position.y,
+            width: self.sixthsquare.size.width,
+            height: self.sixthsquare.size.height,
+            
+            };
+            
+            var playerData = {
+            x: self.player.position.x,
+            y: self.player.position.y,
+            width: self.player.size.width,
+            height: self.player.size.height,
+            }
+            
+            if (sixthsquareData.x < playerData.x + playerData.width &&
+            sixthsquareData.x + sixthsquareData.width > playerData.x &&
+            sixthsquareData.y < playerData.y + playerData.height &&
+            sixthsquareData.height + sixthsquareData.y > playerData.y) {
+                self.player = new Player(self.ctx);
+            }
+
+            // Collision with the seventhsquare1
+
+        var seventhsquare1Data = {
+            x: self.seventhsquare1.position.x,
+            y: self.seventhsquare1.position.y,
+            width: self.seventhsquare1.size.width,
+            height: self.seventhsquare1.size.height,
+            
+            };
+            
+            var playerData = {
+            x: self.player.position.x,
+            y: self.player.position.y,
+            width: self.player.size.width,
+            height: self.player.size.height,
+            }
+            
+            if (seventhsquare1Data.x < playerData.x + playerData.width &&
+            seventhsquare1Data.x + seventhsquare1Data.width > playerData.x &&
+            seventhsquare1Data.y < playerData.y + playerData.height &&
+            seventhsquare1Data.height + seventhsquare1Data.y > playerData.y) {
+                self.player = new Player(self.ctx);
+            }
+
+            // Collision with the seventhsquare2
+
+        var seventhsquare2Data = {
+            x: self.seventhsquare2.position.x,
+            y: self.seventhsquare2.position.y,
+            width: self.seventhsquare2.size.width,
+            height: self.seventhsquare2.size.height,
+            
+            };
+            
+            var playerData = {
+            x: self.player.position.x,
+            y: self.player.position.y,
+            width: self.player.size.width,
+            height: self.player.size.height,
+            }
+            
+            if (seventhsquare2Data.x < playerData.x + playerData.width &&
+            seventhsquare2Data.x + seventhsquare2Data.width > playerData.x &&
+            seventhsquare2Data.y < playerData.y + playerData.height &&
+            seventhsquare2Data.height + seventhsquare2Data.y > playerData.y) {
+                self.player = new Player(self.ctx);
+            }
+
+            // Collision with the seventhsquare3
+
+        var seventhsquare3Data = {
+            x: self.seventhsquare3.position.x,
+            y: self.seventhsquare3.position.y,
+            width: self.seventhsquare3.size.width,
+            height: self.seventhsquare3.size.height,
+            
+            };
+            
+            var playerData = {
+            x: self.player.position.x,
+            y: self.player.position.y,
+            width: self.player.size.width,
+            height: self.player.size.height,
+            }
+            
+            if (seventhsquare3Data.x < playerData.x + playerData.width &&
+            seventhsquare3Data.x + seventhsquare3Data.width > playerData.x &&
+            seventhsquare3Data.y < playerData.y + playerData.height &&
+            seventhsquare3Data.height + seventhsquare3Data.y > playerData.y) {
+                self.player = new Player(self.ctx);
+            }
+
+
+
+            // SQUARE COLLISIONS WITH THE CANVAS 
+
+            // collision of the thirthsquare with the canvas border
+
+            if (self.thirdsquare.position.y <= 0) {
+              self.thirdsquare.speed.y = -self.thirdsquare.speed.y
+            } else if (self.thirdsquare.position.y + self.thirdsquare.size.height >= self.size.height) {
+                self.thirdsquare.speed.y = -self.thirdsquare.speed.y
+            }
+            
+             // collision of the fourthsquare with the canvas border
+             if (self.fourthsquare.position.y <= 0) {
+                self.fourthsquare.speed.y = -self.fourthsquare.speed.y
+              } else if (self.fourthsquare.position.y + self.fourthsquare.size.height >= self.size.height) {
+                  self.fourthsquare.speed.y = -self.fourthsquare.speed.y
+              }
+
+              // collision of the fifthsquare with the canvas border
+
+              if (self.fifthsquare.position.x <= 0) {
+                self.fifthsquare.speed.x = -self.fifthsquare.speed.x
+              } else if (self.fifthsquare.position.x + self.fifthsquare.size.width >= self.size.width) {
+                  self.fifthsquare.speed.x = -self.fifthsquare.speed.x
+              }
+
+              // collision of the seventhsquare1 with the canvas border
+
+              if (self.seventhsquare1.position.y <= 0) {
+                self.seventhsquare1.speed.y = -self.seventhsquare1.speed.y
+              } else if (self.seventhsquare1.position.x + self.seventhsquare1.size.height >= self.size.height) {
+                  self.seventhsquare1.speed.y = -self.seventhsquare1.speed.y
+              }
+
+              // collision of the seventhsquare2 with the canvas border
+
+              if (self.seventhsquare2.position.y <= 0) {
+                self.seventhsquare2.speed.y = -self.seventhsquare2.speed.y
+              } else if (self.seventhsquare2.position.x + self.seventhsquare2.size.height >= self.size.height) {
+                  self.seventhsquare2.speed.y = -self.seventhsquare2.speed.y
+              }
+
+              // collision of the seventhsquare3 with the canvas border
+
+              if (self.seventhsquare3.position.y <= 0) {
+                self.seventhsquare3.speed.y = -self.seventhsquare3.speed.y
+              } else if (self.seventhsquare3.position.x + self.seventhsquare3.size.height >= self.size.height) {
+                  self.seventhsquare3.speed.y = -self.seventhsquare3.speed.y
+              }
+
 
 
     }
@@ -240,7 +394,7 @@ function Game (ctx, canvas, cb) {
         self.update();
         self.changeSquaresMove();
         self.draw();
-        self.startMovements();
+        self.startFirstMovement();
         window.requestAnimationFrame(function(){
           if(!self.isEnded){
             self.doFrame();

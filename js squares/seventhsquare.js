@@ -1,31 +1,32 @@
 'use strict'
 
-function Fourthsquare (ctx) {
+function Seventhsquare (ctx, canvas, x) {
 
     this.ctx = ctx;
     this.size = {
-        width: 150,
-        height: (canvas.height)*5/8,
+        width: 10,
+        height: (canvas.height)*7/8,
     }
 
     this.position = {
-        x: (canvas.width/3) + 420,
+        x: x,
         y: 0,
     }
+    
     this.speed = {
         x:0,
-        y:4,
+        y:2,
     }
 }
 
-Fourthsquare.prototype.draw = function () {
+Seventhsquare.prototype.draw = function () {
     var self = this;
     self.ctx.fillStyle = "grey";
     self.ctx.fillRect(self.position.x, self.position.y, self.size.width, self.size.height)
 }
 
 
-Fourthsquare.prototype.moveDown = function () {
+Seventhsquare.prototype.moveDown = function () {
     var self = this;
     self.position.y += self.speed.y;
 }

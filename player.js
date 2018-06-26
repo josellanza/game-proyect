@@ -3,13 +3,13 @@
 function Player (ctx) {
     this.ctx = ctx;
     this.size = {
-        width: 100,
+        width: 50,
         height: 25,
     }
 
     this.position = {
         x: 20,
-        y: canvas.height/2 -40,
+        y: canvas.height/2 -30,
     }
     this.speed = 5;
     this.lives = 3;

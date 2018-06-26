@@ -3,7 +3,7 @@
 function Fifthsquare (ctx) {
     this.ctx = ctx;
     this.size = {
-        width: canvas.width/2,
+        width: canvas.width/3,
         height: (canvas.height)*1/8,
     }
 
@@ -24,12 +24,7 @@ Fifthsquare.prototype.draw = function () {
     self.ctx.fillRect(self.position.x, self.position.y, self.size.width, self.size.height)
 }
 
-Fifthsquare.prototype.move = function () {
+Fifthsquare.prototype.moveRight = function () {
     var self = this;
     self.position.x += self.speed.x;
-}
-
-Fifthsquare.prototype.moveStop = function () {
-    var self = this;
-    self.position.x -= self.speed.x;
 }

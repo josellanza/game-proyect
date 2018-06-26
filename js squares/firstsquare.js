@@ -13,7 +13,7 @@ function Firstsquare (ctx) {
     }
     this.speed = {
         x:0,
-        y:0.1,
+        y:0.2,
     }
     
 }
