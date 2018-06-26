@@ -1,3 +1,5 @@
+'use strict'
+
 function Secondsquare (ctx) {
     this.ctx = ctx;
     this.size = {

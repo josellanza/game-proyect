@@ -1,3 +1,5 @@
+'use strict'
+
 function Player (ctx) {
     this.ctx = ctx;
     this.size = {
