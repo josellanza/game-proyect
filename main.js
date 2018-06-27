@@ -62,10 +62,7 @@ function main () {
         ctx = canvas.getContext('2d');
         game = new Game(ctx, canvas, endGame);
         window.addEventListener("keydown", playerMovements);
-        // var gameTest = setTimeout(() => {
-        //     endGame();
-            
-        // }, 10000);
+
     }
 
     // we conect the move methods of the player constructor to the event

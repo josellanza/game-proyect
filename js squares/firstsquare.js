@@ -1,10 +1,10 @@
 'use strict'
 
-function Firstsquare (ctx) {
+function Firstsquare (ctx, size) {
     this.ctx = ctx;
     this.size = {
         width: canvas.width/3,
-        height: (canvas.height)*3/8 + 125,
+        height: (canvas.height)*5/10,
     }
 
     this.position = {
@@ -13,7 +13,7 @@ function Firstsquare (ctx) {
     }
     this.speed = {
         x:0,
-        y:0.2,
+        y:0.3,
     }
     
 }

@@ -31,9 +31,9 @@ function Game (ctx, canvas, cb) {
         self.fourthsquare = new Fourthsquare (self.ctx, self.size);
         self.fifthsquare = new Fifthsquare (self.ctx, self.size);
         self.sixthsquare = new Sixthsquare (self.ctx, self.size);
-        self.seventhsquare1 = new Seventhsquare (self.ctx, self.size, 1115);
-        self.seventhsquare2 = new Seventhsquare (self.ctx, self.size, 1165);
-        self.seventhsquare3 = new Seventhsquare (self.ctx, self.size, 1210);
+        self.seventhsquare1 = new Seventhsquare (self.ctx, self.size, 1260);
+        self.seventhsquare2 = new Seventhsquare (self.ctx, self.size, 1320);
+        self.seventhsquare3 = new Seventhsquare (self.ctx, self.size, 1380);
         self.doFrame();
     }
 
@@ -87,13 +87,16 @@ function Game (ctx, canvas, cb) {
         if (self.player.position.y <= 90 && self.player.position.x >= 570) {
             self.thirdsquare.moveUp();
 
-        } else if (self.player.position.y >= 480 && self.player.position.x >= 665) {
+        } 
+        
+        if (self.player.position.y >= 480 && self.player.position.x >= 665) {
             
             self.fifthsquare.moveRight();
             self.fourthsquare.moveDown();
 
         }
-         if (self.player.position.y >= 600 && self.player.position.x >= 800) {
+         
+        if (self.player.position.y >= 90 && self.player.position.x >= 400) {
            
             self.seventhsquare1.moveDown();
             self.seventhsquare2.moveDown();
@@ -101,13 +104,6 @@ function Game (ctx, canvas, cb) {
             
         }      
     }
-
-
-    // Game.prototype.startSecondMovement = function () {
-    //     var self = this,
-        
-    // }
-
 
     Game.prototype.checkCollisions = function () {
         var self = this;

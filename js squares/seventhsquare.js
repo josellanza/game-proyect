@@ -4,13 +4,13 @@ function Seventhsquare (ctx, canvas, x) {
 
     this.ctx = ctx;
     this.size = {
-        width: 10,
-        height: (canvas.height)*7/8,
+        width: 2,
+        height: 60,
     }
 
     this.position = {
         x: x,
-        y: 0,
+        y:(canvas.height)*7/8,
     }
     
     this.speed = {

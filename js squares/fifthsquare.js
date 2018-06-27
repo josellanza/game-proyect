@@ -8,7 +8,7 @@ function Fifthsquare (ctx) {
     }
 
     this.position = {
-        x: 0,
+        x: 1,
         y: (canvas.height)*6/8,
     }
     this.speed = {

@@ -10,7 +10,7 @@ function Fourthsquare (ctx) {
 
     this.position = {
         x: (canvas.width/3) + 420,
-        y: 0,
+        y: 1,
     }
     this.speed = {
         x:0,
