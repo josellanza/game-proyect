@@ -12,7 +12,7 @@ html {
   
   body {
     margin: 0;
-    padding: 80px;
+    padding: 0;
     height: 100%;
   }
  
@@ -22,12 +22,15 @@ html {
     height: 100px;
     width: 300px;
     background-color: Transparent;
-    background-repeat:no-repeat;
     cursor:pointer;
     overflow: hidden;    
-    font: 1em sans-serif; 
+    font: 2em 'Indie Flower', cursive; 
     color: white;
 }
+
+ button:hover {
+    background-color:rgba(57, 116, 211, 0.493);
+ }
  
  div {
     display: flex;
@@ -35,7 +38,7 @@ html {
  }
 
  h1 {
-    font: 15em 'Indie Flower', cursive;;
+    font: 15em 'Indie Flower', cursive;
     color: blanchedalmond;
     justify-content: flex-start; 
  }
@@ -59,12 +62,7 @@ html {
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    height: 800px;
-}
-
-
-#btn-start:hover {
-    background-color:rgba(57, 116, 211, 0.493);
+    height: 1000px;
 }
 
 #main-container {
@@ -72,11 +70,12 @@ html {
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    height: 800px;
+    height: 1000px;
 }
 
 #canvas {
-    background-image: url(https://cdn.wallpapersafari.com/99/55/hBjuLd.jpg);
+    background-image: url(images/canvasBackground.jpg);
+    /* background-image: url(https://cdn.wallpapersafari.com/99/55/hBjuLd.jpg); */
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -91,14 +90,20 @@ html {
 #win-container {
     display: flex;
     justify-content: center;
-    background-image: url(https://i.imgur.com/O6L4H.gif);   
+    background-image: url(https://media.giphy.com/media/R8s2pWPslY0dG/giphy.gif);   
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    height: 800px;
+    height: 1000px;
 }
 
 #game-over {
+    flex-direction: column; 
+    display: inline-block;
+    text-align: center;
+}
+
+#you-win {
     flex-direction: column; 
     display: inline-block;
     text-align: center;

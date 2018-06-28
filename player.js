@@ -1,5 +1,7 @@
 'use strict'
 
+// We build the constructor of the player and we define his properties
+
 function Player (ctx) {
     this.ctx = ctx;
     this.size = {
@@ -17,7 +19,7 @@ function Player (ctx) {
     this.image.src = 'https://i.pinimg.com/originals/20/63/9c/20639ca30d96bf3ed227f88b3ea26569.png';
 }
 
-// We set the position, the size and the color of the player
+// We build the methods of the constructor (draw and move)
 
 Player.prototype.draw = function () {
     var self = this;
@@ -25,8 +27,6 @@ Player.prototype.draw = function () {
     // self.ctx.fillStyle = "red";
     // self.ctx.fillRect(self.position.x, self.position.y, self.size.width, self.size.height)
 }
-
-// We set the movements of the player
 
 Player.prototype.moveUp = function () {
     var self = this;

@@ -1,5 +1,7 @@
 'use strict'
 
+// We build the constructor of the game and we define his properties
+
 function Game (ctx, canvas, cb, wg) {
     this.ctx = ctx;
     this.callback = cb;
@@ -17,6 +19,7 @@ function Game (ctx, canvas, cb, wg) {
     
     this.start();
 
+    // build the instances of the constructors
 }
     Game.prototype.start = function () {
         var self = this;
@@ -28,9 +31,9 @@ function Game (ctx, canvas, cb, wg) {
         new Square(self.ctx, canvas.width*19/30, 1, canvas.width*1/10, canvas.height*5/8, 0, 4, false, false, false),
         new Square(self.ctx, 1, canvas.height*6/8, canvas.width*1/3, canvas.height*1/8, 4, 0, false, false, false),
         new Square(self.ctx, canvas.width*11/15, 0, canvas.width*4/15, canvas.height*7/8, 0, 0, false, false, false),
-        new Square(self.ctx, 1220, canvas.height*2/10, 5, canvas.height/2, 0, 1, false, false, false),
-        new Square(self.ctx, 1320, canvas.height*3/10, 5, canvas.height/2, 0, 1, false, false, false),
-        new Square(self.ctx, 1420, canvas.height*1/10, 5, canvas.height/2, 0, 1, false, false, false)
+        new Square(self.ctx, 1220, canvas.height*2/10, 5, canvas.height/2, 0, 5, false, false, false),
+        new Square(self.ctx, 1320, canvas.height*3/10, 5, canvas.height/2, 0, 5, false, false, false),
+        new Square(self.ctx, 1420, canvas.height*1/10, 5, canvas.height/2, 0, 5, false, false, false)
         );
 
         self.eventBox.push(new EventBox(self.ctx, 570, 0, canvas.width*2/15, canvas.height*1/10, self.squares[2]),
@@ -44,11 +47,7 @@ function Game (ctx, canvas, cb, wg) {
         self.doFrame();
     }
 
-
-
-   
-
-   
+    // clear and draw the rectangles
 
     Game.prototype.clearCanvas = function () {
         var self = this;
@@ -63,14 +62,18 @@ function Game (ctx, canvas, cb, wg) {
         })
     }
 
+    // Update move for the squares
+
     Game.prototype.update = function () {
         var self = this;
-        console.log(self.player.position.x, self.player.position.y);
-
         self.squares.forEach(function(square){
             square.move();
         })
     }
+
+    // COLLISION
+
+    // Collision between player and squares
 
     Game.prototype.playerCollisions = function () {
         self = this;
@@ -101,6 +104,8 @@ function Game (ctx, canvas, cb, wg) {
             } 
         })
 
+        // Collisions between the player and the event boxes
+
         self.eventBox.forEach(function(eventBox) {
             var boxLeft = eventBox.position.x;
             var boxRight = eventBox.position.x + eventBox.size.width;
@@ -129,15 +134,18 @@ function Game (ctx, canvas, cb, wg) {
         })
     }
 
+    // Collisions between the player and the canvas size
+
     Game.prototype.playerCollisionsCanvas = function () {
         var self = this;
 
         var playerLeft = self.player.position.x;
         var playerTop = self.player.position.y;
+        // var playerRight = If player postion reach canvas size, you win, no collision here!
         var playerBottom = self.player.position.y + self.player.size.height;
 
         var canvasLeft = 0;
-        var canvasRight = self.size.width;
+        // var canvasRight = If player postion reach canvas size, you win, no collision here!
         var canvasTop = 0;
         var canvasBottom = self.size.height;
 
@@ -150,6 +158,7 @@ function Game (ctx, canvas, cb, wg) {
         } 
     }      
 
+    // Collisions between the squares and the canvas size
 
     Game.prototype.squaresCollisionCanvas = function () {
         var self = this;
@@ -178,7 +187,9 @@ function Game (ctx, canvas, cb, wg) {
           })
          }
 
-    Game.prototype.checkIfEnded = function () {
+        //  check if lose or win 
+
+    Game.prototype.checkIfLose = function () {
         var self = this;
         if (self.player.lives <= 0) {
           this.isEnded = true;
@@ -194,10 +205,12 @@ function Game (ctx, canvas, cb, wg) {
         } 
     }
 
+    // Refresh all of these functions each frame
+
     Game.prototype.doFrame = function () {
-        var self = this;//change everything to self in the methods
+        var self = this;
         self.checkIfWin();
-        self.checkIfEnded();
+        self.checkIfLose();
         self.squaresCollisionCanvas();
         self.playerCollisions();
         self.update();
@@ -207,9 +220,6 @@ function Game (ctx, canvas, cb, wg) {
         window.requestAnimationFrame(function(){
           if(!self.isEnded){
             self.doFrame();
-          } 
-          // else if (self.isEnded) {
-          //   self.callback();
-          // }
+          }
         })
     }

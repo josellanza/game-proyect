@@ -1,5 +1,7 @@
 'use strict'
 
+// We build the constructor of the game and we define his properties
+
 function Square (ctx, x, y, width, height, speedX, speedY, active, avoidSquares, avoidCanvas) {
 
     this.ctx = ctx;
@@ -26,8 +28,7 @@ function Square (ctx, x, y, width, height, speedX, speedY, active, avoidSquares,
     this.image.src = 'https://files.slack.com/files-pri/T02CQ4EN4-FBEUJ7JDN/rock-jose_copia2.png';
 }
 
-
-
+// We build the methods of the constructor (draw and move)
 
 Square.prototype.draw = function () {
     var self = this;

@@ -1,5 +1,7 @@
 'use strict'
 
+// We build the constructor of the game and we define his properties
+
 function EventBox (ctx, x, y, width, height, target) {
 
     this.ctx = ctx;
@@ -14,3 +16,5 @@ function EventBox (ctx, x, y, width, height, target) {
     }
     this.target = target;
 }
+
+// No methods here, just collisions

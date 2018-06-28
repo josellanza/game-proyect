@@ -11,7 +11,11 @@ function createHtml(html) {
   </div>`);
 
   var gameOver = createHtml(`<div id='game-over'>
-  <h1 class='game-over-title'> LOSER!!</h1>
+  <h1 class='game-over-title'> You lose!</h1>
+  </div>`);
+
+  var youWin = createHtml(`<div id='you-win'>
+  <h1 class='you-win-title'>You win!</h1>
   </div>`);
 
 function main () {
@@ -36,7 +40,6 @@ function main () {
         container.appendChild(introScreen);
         introScreen.appendChild(button);
         button.addEventListener('click', handleStartClick);
-
     }
 
     
@@ -70,7 +73,7 @@ function main () {
 
     function playGame () {
         ctx = canvas.getContext('2d');
-        game = new Game(ctx, canvas, looseGame, winGame);
+        game = new Game(ctx, canvas, looseGame);
         window.addEventListener("keydown", playerMovements);
     }
 
@@ -87,12 +90,6 @@ function main () {
             game.player.moveRight();
         }
     }
-
-    function winGame () {
-        gameContainer.remove();
-        buildYouWin();
-    }
-
 
 
     function looseGame () {
@@ -112,12 +109,23 @@ function main () {
         winContainer.setAttribute('id', 'win-container');
         document.body.appendChild(winContainer);
         winButton = document.createElement('button');
-        winButton.innerText = "PLAY AGAIN";
         winButton.setAttribute('id', 'btn-win');
+        winButton.innerText = "PLAY AGAIN";
+        winContainer.appendChild(youWin);
         winContainer.appendChild(winButton);
-        winButton.addEventListener('click', handleRestartClick);
+        winButton.addEventListener('click', handleWinClick);
     }
 
+    function handleWinClick () {
+        destroyWinGame();
+        buildGame();
+    }
+
+    function destroyWinGame () {
+        winButton.removeEventListener('click', handleWinClick)
+        winContainer.remove();
+        winButton.remove();
+    }
 
 
     function buildGameOver () {
