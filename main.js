@@ -30,8 +30,6 @@ function main () {
     var winContainer = null;
     var winButton = null;
 
-
-
     function buildSplash () {
         container = document.getElementById('main-container');
         button = document.createElement('button');
@@ -42,21 +40,15 @@ function main () {
         button.addEventListener('click', handleStartClick);
     }
 
-    
-
     function handleStartClick () {
         destroySplash();
         buildGame();
     }
 
-
-
     function destroySplash () {
         button.removeEventListener('click', handleStartClick);
         container.remove();
     }
-
-
 
     function buildGame () {
         gameContainer = document.createElement('div');
@@ -69,7 +61,6 @@ function main () {
         gameContainer.appendChild(canvas);
         playGame();
     }
-
 
     function playGame () {
         ctx = canvas.getContext('2d');
@@ -91,7 +82,6 @@ function main () {
         }
     }
 
-
     function looseGame () {
        var self = this;
         gameContainer.remove();
@@ -103,6 +93,29 @@ function main () {
          }
     }
 
+    function buildGameOver () {
+        reStartContainer = document.createElement('div');
+        reStartContainer.setAttribute('id','restart-container');
+        document.body.appendChild(reStartContainer);
+        reStartButton = document.createElement('button');
+        reStartButton.setAttribute('id', 'btn-restart');
+        reStartButton.innerText = "PLAY AGAIN";
+        reStartContainer.appendChild(gameOver);
+        gameOver.appendChild(reStartButton);
+        reStartButton.addEventListener('click', handleRestartClick);
+    }
+
+
+    function handleRestartClick () {
+        destroyGameOver();
+        buildGame();
+    }
+
+    function destroyGameOver () {
+        reStartButton.removeEventListener('click', handleRestartClick);
+        reStartContainer.remove();
+        reStartButton.remove();
+    }
 
     function buildYouWin(){
         winContainer = document.createElement('div');
@@ -112,7 +125,7 @@ function main () {
         winButton.setAttribute('id', 'btn-win');
         winButton.innerText = "PLAY AGAIN";
         winContainer.appendChild(youWin);
-        winContainer.appendChild(winButton);
+        youWin.appendChild(winButton);
         winButton.addEventListener('click', handleWinClick);
     }
 
@@ -127,31 +140,6 @@ function main () {
         winButton.remove();
     }
 
-
-    function buildGameOver () {
-        reStartContainer = document.createElement('div');
-        reStartContainer.setAttribute('id','restart-container');
-        document.body.appendChild(reStartContainer);
-        reStartButton = document.createElement('button');
-        reStartButton.setAttribute('id', 'btn-restart');
-        reStartButton.innerText = "TRY AGAIN";
-        reStartContainer.appendChild(gameOver);
-        gameOver.appendChild(reStartButton);
-        reStartButton.addEventListener('click', handleRestartClick);
-    }
-
-
-    function handleRestartClick () {
-        destroyGameOver();
-        buildGame();
-    }
-
-
-    function destroyGameOver () {
-        reStartButton.removeEventListener('click', handleRestartClick);
-        reStartContainer.remove();
-        reStartButton.remove();
-    }
 
     buildSplash();
 }

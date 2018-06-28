@@ -21,11 +21,12 @@ html {
   button {
     height: 100px;
     width: 300px;
+    color: white;
     background-color: Transparent;
     cursor:pointer;
-    overflow: hidden;    
     font: 2em 'Indie Flower', cursive; 
-    color: white;
+    font-weight: bold;
+    border-width: 5px;
 }
 
  button:hover {

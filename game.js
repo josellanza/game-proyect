@@ -29,11 +29,11 @@ function Game (ctx, canvas, cb, wg) {
         new Square(self.ctx, 0, canvas.height*4/8, canvas.width*13/30, canvas.height*4/8, 0, 0, false, false, false),
         new Square(self.ctx, canvas.width*13/30, canvas.height*1/8, canvas.width*1/10, canvas.height*5/8, 0, -4, false, false, false),
         new Square(self.ctx, canvas.width*19/30, 1, canvas.width*1/10, canvas.height*5/8, 0, 4, false, false, false),
-        new Square(self.ctx, 1, canvas.height*6/8, canvas.width*1/3, canvas.height*1/8, 4, 0, false, false, false),
+        new Square(self.ctx, 1, canvas.height*6/8, canvas.width*1/3, canvas.height*1/8, 5, 0, false, false, false),
         new Square(self.ctx, canvas.width*11/15, 0, canvas.width*4/15, canvas.height*7/8, 0, 0, false, false, false),
         new Square(self.ctx, 1220, canvas.height*2/10, 5, canvas.height/2, 0, 5, false, false, false),
-        new Square(self.ctx, 1320, canvas.height*3/10, 5, canvas.height/2, 0, 5, false, false, false),
-        new Square(self.ctx, 1420, canvas.height*1/10, 5, canvas.height/2, 0, 5, false, false, false)
+        new Square(self.ctx, 1320, canvas.height*3/10, 5, canvas.height/2, 0, 7, false, false, false),
+        new Square(self.ctx, 1420, canvas.height*1/10, 5, canvas.height/3, 0, 11, false, false, false)
         );
 
         self.eventBox.push(new EventBox(self.ctx, 570, 0, canvas.width*2/15, canvas.height*1/10, self.squares[2]),
@@ -187,6 +187,26 @@ function Game (ctx, canvas, cb, wg) {
           })
          }
 
+
+        // Collision between rectangles
+
+        // Game.prototype.squaresCollisionsquares = function () {
+        //     var self = this;
+        //     var square1Bottom = self.squares[0].position.y + self.squares[0].size.height;
+        //     self.squares.forEach(function(square){
+        //         var squareLeft = square.position.x;
+        //         var squareRight = square.position.x + square.size.width;
+        //         var squareTop = square.position.y;
+        //         var squareBottom = square.position.y + square.size.height;
+
+        //         if (square.avoidSquares) {
+        //             if (square1Bottom <= squareTop) {
+        //                 squares[0].speed.y = 0;
+        //             }
+        //         }
+        //     })
+        // }
+
         //  check if lose or win 
 
     Game.prototype.checkIfLose = function () {
@@ -211,9 +231,10 @@ function Game (ctx, canvas, cb, wg) {
         var self = this;
         self.checkIfWin();
         self.checkIfLose();
-        self.squaresCollisionCanvas();
-        self.playerCollisions();
         self.update();
+        self.squaresCollisionCanvas();
+        // self.squaresCollisionsquares();
+        self.playerCollisions();
         self.playerCollisionsCanvas();
         self.clearCanvas();
         self.draw();
