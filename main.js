@@ -1,5 +1,19 @@
 'use strict'
 
+function createHtml(html) {
+    var div = document.createElement("div");
+    div.innerHTML = html;
+    return div.children[0];
+  } 
+
+  var introScreen = createHtml(`<div id='intro'>
+  <h1 class='intro-title'> Save the whale</h1>
+  </div>`);
+
+  var gameOver = createHtml(`<div id='game-over'>
+  <h1 class='game-over-title'> LOSER!!</h1>
+  </div>`);
+
 function main () {
     var container = null;
     var button = null;
@@ -9,6 +23,8 @@ function main () {
     var reStartButton = null; 
     var ctx = null;
     var game = null;
+    var winContainer = null;
+    var winButton = null;
 
 
 
@@ -17,7 +33,8 @@ function main () {
         button = document.createElement('button');
         button.setAttribute('id', 'btn-start');
         button.innerText = "START GAME";
-        container.appendChild(button);
+        container.appendChild(introScreen);
+        introScreen.appendChild(button);
         button.addEventListener('click', handleStartClick);
 
     }
@@ -51,18 +68,10 @@ function main () {
     }
 
 
-
-    
-
-
-
-
-
     function playGame () {
         ctx = canvas.getContext('2d');
-        game = new Game(ctx, canvas, endGame);
+        game = new Game(ctx, canvas, looseGame, winGame);
         window.addEventListener("keydown", playerMovements);
-
     }
 
     // we conect the move methods of the player constructor to the event
@@ -79,15 +88,36 @@ function main () {
         }
     }
 
-
-
-
-
-
-    function endGame () {
+    function winGame () {
         gameContainer.remove();
-        buildGameOver();
+        buildYouWin();
     }
+
+
+
+    function looseGame () {
+       var self = this;
+        gameContainer.remove();
+
+       if (self.player.lives <= 0) { 
+           buildGameOver();
+         } else if (self.player.position.x + self.player.size.width >= self.size.width){
+             buildYouWin();
+         }
+    }
+
+
+    function buildYouWin(){
+        winContainer = document.createElement('div');
+        winContainer.setAttribute('id', 'win-container');
+        document.body.appendChild(winContainer);
+        winButton = document.createElement('button');
+        winButton.innerText = "PLAY AGAIN";
+        winButton.setAttribute('id', 'btn-win');
+        winContainer.appendChild(winButton);
+        winButton.addEventListener('click', handleRestartClick);
+    }
+
 
 
     function buildGameOver () {
@@ -96,8 +126,9 @@ function main () {
         document.body.appendChild(reStartContainer);
         reStartButton = document.createElement('button');
         reStartButton.setAttribute('id', 'btn-restart');
-        reStartButton.innerText = "RESTART GAME";
-        reStartContainer.appendChild(reStartButton);
+        reStartButton.innerText = "TRY AGAIN";
+        reStartContainer.appendChild(gameOver);
+        gameOver.appendChild(reStartButton);
         reStartButton.addEventListener('click', handleRestartClick);
     }
 
@@ -111,6 +142,7 @@ function main () {
     function destroyGameOver () {
         reStartButton.removeEventListener('click', handleRestartClick);
         reStartContainer.remove();
+        reStartButton.remove();
     }
 
     buildSplash();
