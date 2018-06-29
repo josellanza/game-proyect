@@ -73,7 +73,7 @@ function main () {
         window.addEventListener("keydown", playerMovements);
     }
 
-    // we conect the move methods of the player constructor to the event
+    //  we conect the move methods of the player constructor to the event
 
     function playerMovements (event) {
         if (event.key === "w") {
