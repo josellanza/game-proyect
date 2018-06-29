@@ -31,6 +31,10 @@ function main () {
     var winButton = null;
 
     function buildSplash () {
+        // instructions = document.createElement('button');
+        // instructions.setAttribute('id', 'btn-instructions');
+        // instructions.innerText = "INSTRUCTIONS";
+        // introScreen.appendChild(instructions);
         container = document.getElementById('main-container');
         button = document.createElement('button');
         button.setAttribute('id', 'btn-start');
@@ -51,6 +55,7 @@ function main () {
     }
 
     function buildGame () {
+        document.getElementById('game-song').play();
         gameContainer = document.createElement('div');
         gameContainer.setAttribute('id','game-container');
         document.body.appendChild(gameContainer);
