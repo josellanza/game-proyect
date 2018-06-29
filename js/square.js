@@ -25,7 +25,7 @@ function Square (ctx, x, y, width, height, speedX, speedY, active, avoidSquares,
     this.avoidSquares = avoidSquares;
     this.avoidCanvas = avoidCanvas
     this.image = new Image(); 
-    this.image.src = 'https://files.slack.com/files-pri/T02CQ4EN4-FBEUJ7JDN/rock-jose_copia2.png';
+    this.image.src = 'images/squares.png';
 }
 
 // We build the methods of the constructor (draw and move)

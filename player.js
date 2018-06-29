@@ -16,7 +16,7 @@ function Player (ctx) {
     this.speed = 5;
     this.lives = 1;
     this.image = new Image(); 
-    this.image.src = 'https://i.pinimg.com/originals/20/63/9c/20639ca30d96bf3ed227f88b3ea26569.png';
+    this.image.src = 'images/player1.png';
 }
 
 // We build the methods of the constructor (draw and move)
