@@ -13,7 +13,7 @@ function Player (ctx) {
         x: 20,
         y: canvas.height/2 -110,
     }
-    this.speed = 5;
+    this.speed = 8;
     this.lives = 1;
     this.image = new Image(); 
     this.image.src = 'images/player1.png';
