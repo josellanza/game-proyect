@@ -219,7 +219,7 @@ function Game (ctx, canvas, cb, wg) {
       
       Game.prototype.checkIfWin = function () {
         var self = this; 
-        if (self.player.position.x + self.player.size.width >= self.size.width) {
+        if (self.player.position.x + self.player.size.width >= self.size.width + 50) {
             this.isEnded = true;
             this.callback();
         } 
